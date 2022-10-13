@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import { env } from './Config';
 
 function Edituser() {
-  const params = useParams()
+  const { id } = useParams()
   const navigate = useNavigate
     const formik = useFormik({
         initialValues: {
@@ -45,7 +46,7 @@ function Edituser() {
           return errors
         },
         onSubmit: async (values) => {
-         await axios.put(`https://6300faaee71700618a325118.mockapi.io/api/v1/users/${params.id}`,values)
+         await axios.put(`${env.api}/teacher/${id}`,values)
          alert("Saccessful Edit For User")
          navigate("/portal/users")
         },
@@ -57,7 +58,7 @@ function Edituser() {
 
        let loadUser = async ()=>{
          try {
-         let user = await axios.get(`https://6300faaee71700618a325118.mockapi.io/api/v1/users/${params.id}`)
+         let user = await axios.get(`${env.api}/teacher/${id}`)
          formik.setValues({
           name: user.data.name,
           position: user.data.position,

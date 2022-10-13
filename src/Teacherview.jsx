@@ -19,7 +19,7 @@ function Userview() {
 
       let loadUser = async ()=>{
           try {
-          let user = await axios.get(`${env.api}/student/${params.id}`)
+          let user = await axios.get(`${env.api}/teacher/${params.id}`)
           setUseData(user.data)
           } catch (error) {
             
